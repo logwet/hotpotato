@@ -30,8 +30,8 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerPatch {
         if (!this.level.isClientSide) {
             this.timeTracker++;
 
-            if (this.timeTracker >= HotPotato.HOT_POTATO_DELAY) {
-                this.timeTracker = 0;
+            if (this.timeTracker > HotPotato.HOT_POTATO_DELAY) {
+                this.hotpotato$resetTimeTracker();
                 HotPotato.killPlayer((Player) (Object) this);
             }
         }
