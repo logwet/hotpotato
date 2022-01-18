@@ -6,7 +6,7 @@
 * `FIRE` - If you haven't taken fire damage in the last 30 seconds, you die (fire res doesn't
   count!)
 * `GRASS` - If you haven't touched grass (short or tall, the kind that you have to shear) in the
-  last minute, you die.
+  last 30 seconds, you die.
 * `BREAK` - If you haven't broken a block in the last 15 seconds, you die.
 
 ## Setup
