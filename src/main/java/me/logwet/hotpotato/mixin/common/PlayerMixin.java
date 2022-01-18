@@ -40,7 +40,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
             if (this.timeTracker >= HotPotato.HOT_POTATO_DELAY) {
                 this.timeTracker = 0;
-                this.hurt(HotPotato.HOT_POTATO, 1000);
+                HotPotato.killPlayer((Player) (Object) this);
             }
         }
     }
