@@ -1,23 +1,26 @@
 package me.logwet.hotpotato.mixin.common;
 
-import java.util.Objects;
+import com.google.common.collect.ImmutableSet;
+import java.util.Set;
 import me.logwet.hotpotato.HotPotato;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
-    @Unique private Vec3 lastPos;
     @Unique private int timeTracker = 0;
 
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
@@ -29,19 +32,23 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void checkStatus(CallbackInfo ci) {
-        Vec3 position = this.position();
-        if (Objects.nonNull(position) && !this.level.isClientSide) {
-            if (position.equals(this.lastPos)) {
-                this.timeTracker++;
-            } else {
-                this.lastPos = position;
-                this.timeTracker = 0;
-            }
+        if (!this.level.isClientSide) {
+            this.timeTracker++;
 
             if (this.timeTracker >= HotPotato.HOT_POTATO_DELAY) {
                 this.timeTracker = 0;
                 HotPotato.killPlayer((Player) (Object) this);
             }
+        }
+    }
+
+    @Inject(method = "eat", at = @At("HEAD"))
+    private void checkFood(
+            Level level, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
+        Set<Item> acceptedFoods =
+                ImmutableSet.of(Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO);
+        if (acceptedFoods.contains(itemStack.getItem())) {
+            this.timeTracker = 0;
         }
     }
 }
