@@ -1,13 +1,13 @@
 # Hot Potato
 
-* `POTATO` - If you haven't eaten a potato (raw, cooked or poisonous) in the last minute, you die.
+* `POTATO` - If you haven't eaten a potato (raw, cooked or poisonous) in the 30 seconds, you die.
 * `MOVE` - If you haven't moved in the last second, you die.
-* `FALL` - If you haven't taken fall damage in the last 30 seconds, you die.
-* `FIRE` - If you haven't taken fire damage in the last 30 seconds, you die (fire res doesn't
+* `FALL` - If you haven't taken fall damage in the last 10 seconds, you die.
+* `FIRE` - If you haven't taken fire damage in the last 10 seconds, you die (fire res doesn't
   count!)
 * `GRASS` - If you haven't touched grass (short or tall, the kind that you have to shear) in the
-  last 30 seconds, you die.
-* `BREAK` - If you haven't broken a block in the last 15 seconds, you die.
+  last 5 seconds, you die.
+* `BREAK` - If you haven't broken a block in the last 5 seconds, you die.
 
 ## Setup
 
