@@ -3,6 +3,7 @@ package me.logwet.hotpotato.mixin.common;
 import com.google.common.collect.ImmutableSet;
 import java.util.Set;
 import me.logwet.hotpotato.HotPotato;
+import me.logwet.hotpotato.PlayerPatch;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -18,11 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
-public abstract class PlayerMixin extends LivingEntity {
+public abstract class PlayerMixin extends LivingEntity implements PlayerPatch {
     @Unique private int timeTracker = 0;
 
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
+    }
+
+    @Override
+    public void hotpotato$resetTimeTracker() {
+        this.timeTracker = 0;
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -43,7 +49,7 @@ public abstract class PlayerMixin extends LivingEntity {
         Set<Item> acceptedFoods =
                 ImmutableSet.of(Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO);
         if (acceptedFoods.contains(itemStack.getItem())) {
-            this.timeTracker = 0;
+            this.hotpotato$resetTimeTracker();
         }
     }
 }
