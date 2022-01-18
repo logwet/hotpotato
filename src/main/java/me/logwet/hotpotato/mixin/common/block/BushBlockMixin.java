@@ -19,7 +19,6 @@ public abstract class BushBlockMixin extends Block {
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof Player && !level.isClientSide) {
-            System.out.println("Touched grass");
             ((PlayerPatch) entity).hotpotato$resetTimeTracker();
         }
     }
