@@ -4,9 +4,11 @@
   "package": "me.logwet.hotpotato.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "common.DamageSourceFactory",
+    "common.PlayerMixin"
   ],
   "client": [
-    "client.DebugScreenOverlayMixin",
+    "client.DebugScreenOverlayMixin"
   ],
   "server": [
   ],

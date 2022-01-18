@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "hotpotato",
   "version": "${version}",
   "accessWidener": "hotpotato.accesswidener",
   "name": "Hot Potato",
