@@ -34,8 +34,8 @@ public abstract class PlayerMixin extends LivingEntity {
     }
 
     @Inject(method = "hurt", at = @At("HEAD"))
-    private void checkFall(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (source == DamageSource.FALL) {
+    private void checkFire(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.isFire()) {
             this.timeTracker = 0;
         }
     }
