@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "common.DamageSourceFactory",
-    "common.PlayerMixin"
+    "common.PlayerMixin",
+    "common.block.BushBlockMixin",
+    "common.block.TallGrassBlockMixin"
   ],
   "client": [
     "client.DebugScreenOverlayMixin"
