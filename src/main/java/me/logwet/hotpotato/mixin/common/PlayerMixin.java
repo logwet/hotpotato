@@ -1,18 +1,12 @@
 package me.logwet.hotpotato.mixin.common;
 
-import com.google.common.collect.ImmutableSet;
-import java.util.Set;
 import me.logwet.hotpotato.HotPotato;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,9 +21,6 @@ public abstract class PlayerMixin extends LivingEntity {
         super(entityType, level);
     }
 
-    @Shadow
-    public abstract boolean hurt(DamageSource source, float amount);
-
     @Inject(method = "tick", at = @At("TAIL"))
     private void checkStatus(CallbackInfo ci) {
         if (!this.level.isClientSide) {
@@ -42,12 +33,9 @@ public abstract class PlayerMixin extends LivingEntity {
         }
     }
 
-    @Inject(method = "eat", at = @At("HEAD"))
-    private void checkFood(
-            Level level, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
-        Set<Item> acceptedFoods =
-                ImmutableSet.of(Items.POTATO, Items.BAKED_POTATO, Items.POISONOUS_POTATO);
-        if (acceptedFoods.contains(itemStack.getItem())) {
+    @Inject(method = "hurt", at = @At("HEAD"))
+    private void checkFall(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source == DamageSource.FALL) {
             this.timeTracker = 0;
         }
     }
