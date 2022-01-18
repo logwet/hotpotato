@@ -8,6 +8,7 @@
 * `GRASS` - If you haven't touched grass (short or tall, the kind that you have to shear) in the
   last 5 seconds, you die.
 * `BREAK` - If you haven't broken a block in the last 5 seconds, you die.
+* `PLACE` - If you haven't placed a block in the last 5 seconds, you die.
 
 ## Setup
 
