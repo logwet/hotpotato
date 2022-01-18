@@ -6,8 +6,7 @@
   "mixins": [
     "common.DamageSourceFactory",
     "common.PlayerMixin",
-    "common.block.BushBlockMixin",
-    "common.block.TallGrassBlockMixin"
+    "common.block.BlockMixin"
   ],
   "client": [
     "client.DebugScreenOverlayMixin"
