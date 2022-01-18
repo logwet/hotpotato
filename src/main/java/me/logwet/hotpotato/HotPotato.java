@@ -22,7 +22,7 @@ public class HotPotato implements ModInitializer {
     public static final boolean IS_CLIENT =
             FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static final int HOT_POTATO_DELAY = 600;
+    public static final int HOT_POTATO_DELAY = 300;
 
     private static final DamageSource HOT_POTATO_DAMAGE_SOURCE;
 
