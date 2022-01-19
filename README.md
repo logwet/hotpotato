@@ -2,6 +2,7 @@
 
 * `POTATO` - If you haven't eaten a potato (raw, cooked or poisonous) in the 30 seconds, you die.
 * `MOVE` - If you haven't moved in the last second, you die.
+* `FLOOR` - If you've been touching the floor for longer than a second, you die. The floor is lava.
 * `FALL` - If you haven't taken fall damage in the last 10 seconds, you die.
 * `FIRE` - If you haven't taken fire damage in the last 10 seconds, you die (fire res doesn't
   count!)
